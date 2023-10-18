@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 /**
  * Based on Leetcode 63 := Unique Paths II
@@ -6,9 +7,16 @@
  */
 public class DP_9 {
     public static void main(String[] args) {
-
+        int[][] grid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
+        int[][] dp = new int[grid.length][grid[0].length];
+        for(int[] i: dp){
+            Arrays.fill(i, -1);
+        }
+        System.out.println(recursive(0,0,grid));
+        System.out.println(memoize(dp, 0, 0, grid));
+        System.out.println(tabulate(grid));
     }
-    int tabulate(int[][] grid){
+    static int tabulate(int[][] grid){
         int m = grid.length-1;
         int n = grid[0].length-1;
 
@@ -32,7 +40,7 @@ public class DP_9 {
         return dp[m][n];
     }
 
-    int memoize(int[][] dp, int i, int j, int[][] grid){
+    static int memoize(int[][] dp, int i, int j, int[][] grid){
         if(i<0 || j<0 || grid[i][j] == 1){
             return 0;
         }
@@ -45,7 +53,7 @@ public class DP_9 {
 
         return dp[i][j] = top+left;
     }
-    int recursive(int i, int j, int[][] grid){
+    static int recursive(int i, int j, int[][] grid){
         if(i<0 || j<0 || grid[i][j] == 1){
             return 0;
         }
