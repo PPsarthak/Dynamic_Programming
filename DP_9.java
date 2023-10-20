@@ -8,12 +8,14 @@ import java.util.Arrays;
 public class DP_9 {
     public static void main(String[] args) {
         int[][] grid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
+
         int[][] dp = new int[grid.length][grid[0].length];
         for(int[] i: dp){
             Arrays.fill(i, -1);
         }
-        System.out.println(recursive(0,0,grid));
-        System.out.println(memoize(dp, 0, 0, grid));
+
+        System.out.println(recursive(grid.length-1 , grid[0].length-1, grid));
+        System.out.println(memoize(dp,grid.length-1 , grid[0].length-1, grid));
         System.out.println(tabulate(grid));
     }
     static int tabulate(int[][] grid){
